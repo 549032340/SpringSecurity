@@ -16,8 +16,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth)
 			throws Exception {
-		auth.inMemoryAuthentication().withUser("yiqun").password("123456")
-				.roles("USER");
+		auth.inMemoryAuthentication().withUser("user").password("123").roles("USER")
+								.and().withUser("admin").password("123").roles("ADMIN");
+	
 	}
 	
 	
@@ -41,7 +42,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				//自己设置logoutSuccessHandler,如果指定了这个选项那么logoutSuccessUrl()的设置会被忽略。                             
 //				.logoutSuccessHandler(logoutSuccessHandler) 
 				//指定是否在注销时让HttpSession无效。 默认设置为 true
-				.invalidateHttpSession(true) 
+//				.invalidateHttpSession(true) 
 				//添加一个LogoutHandler.默认SecurityContextLogoutHandler会被添加为最后一个LogoutHandler
 //				.addLogoutHandler(logoutHandler)  
 				//允许指定在注销成功时将移除的cookie。
@@ -49,8 +50,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.and()
 			.httpBasic();//允许用户使用HTTP基于验证进行认证
 		http.csrf()
-//				.disable();//禁用CSRF
-				.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());//等于disable
+				.disable();//禁用CSRF
+//				.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());//等于disable
 		
 	}
 }

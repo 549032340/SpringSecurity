@@ -8,18 +8,45 @@
 <!-- 获得当前用户的用户名 -->
 </head>
 <body>
-	登录用户:<span sec:authentication="name"></span>
-	<br></br>
-	登录角色:<span sec:authentication="principal.authorities"></span>
+<fieldset >
+<legend>登录用户:<span sec:authentication="name"></span>
+		登录角色:<span sec:authentication="principal.authorities"></span>
+</legend>
+<br></br>
+<table border="1" align="center" id="tbl" >
+	<tr>
+		<th width="50px"><label th:text="用户名"></label></th>
+		<th width="50px"><label th:text="密码"></label></th>
+		<th width="50px"><label th:text="年龄"></label></th>
+		<th width="50px"><label th:text="性别"></label></th>
+		<th width="50px"><label th:text="删除"></label></th>
+	</tr>
+		<tr th:each="user: ${list}">
+		<td align="center" th:text="${user.loginName}"> </td>
+		<td align="center" th:text="${user.password}"> </td>
+		<td align="center" th:text="${user.age}"> </td>
+		<td align="center" th:text="${user.sex}"> </td>
+		<td align="center"><a th:href="@{'/delete?loginName='+${user.loginName}}">删除</a></td>
+	</tr>
+</table>
 	<ul sec:authorize="isAnonymous()" >
 		<li><a th:href="@{/login}">Login </a></li>
 		<li><a th:href="@{/register}">Sign Up</a></li>
 	</ul>
-	<ul sec:authorize="isAuthenticated()"
-		class="nav navbar-nav navbar-right">
-		<li><a th:href="@{/admin/list}">list</a></li>
+	<ul sec:authorize="isAuthenticated()">
 		<li><a th:href="@{logout}">Log out</a></li>
-		<li><a href=" " th:href="logout"> 退出</a></li>
 	</ul>
+	<ul sec:authorize="isAuthenticated()">
+		<li><a th:href="@{'/delete?loginName='+${user.loginName}}">添加</a></li>
+	</ul>
+</fieldset>
 </body>
+<style type="text/css">
+fieldset {
+	width: 500px;
+	height: 250px;
+	margin: 100px auto;
+	padding: 20px;
+}
+</style>
 </html>
