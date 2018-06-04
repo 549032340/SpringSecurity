@@ -21,7 +21,7 @@
 		<th width="50px"><label th:text="性别"></label></th>
 		<th width="50px"><label th:text="删除"></label></th>
 	</tr>
-		<tr th:each="user: ${list}">
+	<tr th:each="user: ${list}">
 		<td align="center" th:text="${user.loginName}"> </td>
 		<td align="center" th:text="${user.password}"> </td>
 		<td align="center" th:text="${user.age}"> </td>
@@ -37,7 +37,7 @@
 		<li><a th:href="@{logout}">Log out</a></li>
 	</ul>
 	<ul sec:authorize="isAuthenticated()">
-		<li><a th:href="@{'/delete?loginName='+${user.loginName}}">添加</a></li>
+		<li><a th:href="@{'/add'}">添加</a></li>
 	</ul>
 </fieldset>
 </body>

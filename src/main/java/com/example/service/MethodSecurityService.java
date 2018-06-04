@@ -1,7 +1,6 @@
 package com.example.service;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.security.access.annotation.Secured;
@@ -14,11 +13,11 @@ import com.example.domain.User;
 
 /**
  * 
- * @ClassName: MethodSecurityService
- * @Description: TODO
- * @author zs
- * @date 2018年6月4日 下午2:53:38
- *
+* @ClassName: MethodSecurityService   
+* @Description: TODO  
+* @author yiqun  
+* @date 2018年6月4日 下午4:24:40   
+*
  */
 @Service
 
@@ -63,12 +62,20 @@ public class MethodSecurityService {
 
 	public List<User> list = new ArrayList<>();
 
+	/**
+	 * 显示所有用户信息
+	* @Title: showList   
+	* @Description: TODO  
+	* @param @return   
+	* @return List<User>   
+	* @throws
+	 */
 	public List<User> showList() {
 		return list;
 	}
 
 	/**
-	 * 根据权限显示信息
+	 * 登陆后根据权限显示信息
 	* @Title: userForm   
 	* @Description: TODO  
 	* @param @return   
@@ -94,6 +101,15 @@ public class MethodSecurityService {
 		return list;
 	}
 
+	/**
+	 * 根据用户名删除信息
+	* @Title: delete   
+	* @Description: TODO  
+	* @param @param del
+	* @param @return   
+	* @return List<User>   
+	* @throws
+	 */
 	public List<User> delete(String del) {
 		for (User user : list) {
 			if (user.getLoginName().equals(del)) {

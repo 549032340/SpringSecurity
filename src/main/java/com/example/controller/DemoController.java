@@ -21,11 +21,28 @@ public class DemoController {
 MethodSecurityService methodSecurityService;
 
 
+	/**
+	 * 跳转到登录页面
+	* @Title: login   
+	* @Description: TODO  
+	* @param @return   
+	* @return String   
+	* @throws
+	 */
 	@GetMapping("/login")
 	public String login() {
 		return "login";
 	}
 	
+	/**
+	 * 登录成功跳转页面
+	* @Title: hello   
+	* @Description: TODO  
+	* @param @param model
+	* @param @return   
+	* @return String   
+	* @throws
+	 */
 	@GetMapping("/")
 	public String hello(Model model) {
 		@SuppressWarnings("unused")
@@ -36,6 +53,15 @@ MethodSecurityService methodSecurityService;
 		return "hello";
 	}
 	
+	/**
+	 * 显示所有信息
+	* @Title: show   
+	* @Description: TODO  
+	* @param @param model
+	* @param @return   
+	* @return String   
+	* @throws
+	 */
 	@GetMapping("/show")
 	public String show(Model model) {
 		@SuppressWarnings("unused")
@@ -46,11 +72,19 @@ MethodSecurityService methodSecurityService;
 		return "hello";
 	}
 	
+	/**
+	 * 根据用户名删除信息
+	* @Title: deletet   
+	* @Description: TODO  
+	* @param @param user
+	* @param @return   
+	* @return String   
+	* @throws
+	 */
 	@GetMapping("/delete")
 	public String deletet(User user) {
 		methodSecurityService.delete(user.getLoginName());
 		return "redirect:show";
-
 	}
 	
 }
